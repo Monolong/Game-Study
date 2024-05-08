@@ -1,21 +1,34 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
+public struct CreatureStat
+{
+    public int level;
+
+    public float healthPoint;
+    public float healthPointMax;
+
+    public float expCurrent;
+    public float expMax;
+}
+
 public class Character : MonoBehaviour
 {
-
     [SerializeField] float moveSpeed = 3f;
 
     Vector3 moveVector;
 
-    float healthPoint;
-    [SerializeField] float healthPointMax = 100;
     [SerializeField] HPIndicator indicator;
+
+    [SerializeField] CreatureStat stat;
+
 
     private void Start()
     {
-        SetHealthPoint(healthPointMax);
+        SetHealthPoint(stat.healthPointMax);
     }
 
     // Update is called once per frame
@@ -26,13 +39,18 @@ public class Character : MonoBehaviour
 
     public void SetHealthPoint(float health)
     {
-        healthPoint = health;
-        indicator.SetIndicator(healthPoint/healthPointMax);
+        stat.healthPoint = health;
+        indicator.SetIndicator(stat.healthPoint/stat.healthPointMax);
+    }
+
+    public void SetCharaEXP(float amount)
+    {
+        stat.expCurrent += amount;
     }
 
     public void ExecuteOnDamaged(float damage)
     {
-        SetHealthPoint(healthPoint - damage);
+        SetHealthPoint(stat.healthPoint - damage);
         Debug.Log("¾Æ¾ß");
     }
 

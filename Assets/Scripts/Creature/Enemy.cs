@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+
+    public int id;
+
     Vector3 moveVector;
 
     GameObject player;
@@ -17,6 +20,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] float healthPoint = 10f;
     [SerializeField] float damage = 10f;
 
+    [SerializeField] GameObject expPrefab;
+
     public void ExecuteOnDamaged(float damage)
     {
         healthPoint -= damage;
@@ -28,6 +33,7 @@ public class Enemy : MonoBehaviour
 
     public void ExecuteOnDead()
     {
+        Instantiate(expPrefab, transform.position, Quaternion.identity);
         gameObject.SetActive(false);
         spawner.enemyList.Remove(this);
     }

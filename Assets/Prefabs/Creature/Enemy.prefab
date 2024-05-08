@@ -99,8 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43af0f34632ca0844af0b21df206fbfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   healthPoint: 10
   damage: 10
+  expPrefab: {fileID: 8672839430144612909, guid: 2cb1daacc3c913547953e120c7ed99b4, type: 3}
 --- !u!61 &6475436212513974611
 BoxCollider2D:
   m_ObjectHideFlags: 0
